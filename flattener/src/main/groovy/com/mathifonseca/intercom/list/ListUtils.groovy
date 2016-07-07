@@ -11,7 +11,7 @@ class ListUtils {
 
     private static Collection flattenRecursive(Collection list, Collection flattened) {
         list.each { item ->
-            if (item instanceof List) {
+            if (item instanceof Collection) {
                 flattenRecursive(item, flattened)
             } else {
                 flattened << item
