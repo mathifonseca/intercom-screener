@@ -65,4 +65,24 @@ class CustomerRepositoryTest extends Specification {
             list.size() == 10
     }
 
+    def "test findAllByLocationNearPoint"() {
+        given: "some initial data"
+            def points = [
+                new Point(latitude: -34.904394, longitude: -56.1914907),
+                new Point(latitude: -34.8951546, longitude: -56.1703243),
+                new Point(latitude: -34.877529, longitude: -56.1443874),
+                new Point(latitude: -32.3660957, longitude: -54.1610219)
+            ]
+            points.eachWithIndex { point, i ->
+                CustomerRepository.persist(new Customer(id: i, name: "cust$i", location: point))
+            }
+            Point center = new Point(latitude: -34.905714, longitude: -56.1898166)
+            double radius = 5
+        when: "findAllByLocationNearPoint method is called"
+            List<Customer> list = CustomerRepository.findAllByLocationNearPoint(center, radius)
+        then: "list with matching customers is returned"
+            list
+            list.size() == 2
+    }
+
 }

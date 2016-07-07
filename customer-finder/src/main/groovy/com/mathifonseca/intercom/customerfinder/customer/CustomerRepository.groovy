@@ -31,6 +31,12 @@ class CustomerRepository {
         return getInstance().customers.values().toList()
     }
 
+    static List<Customer> findAllByLocationNearPoint(Point center, double radius) {
+        return getInstance().customers.values()
+            .findAll { it.location.isWithinKms(radius, center) }
+            .sort { it.id }
+    }
+
     static void clear() {
         getInstance().customers.clear()
     }
