@@ -96,4 +96,51 @@ class PointTest extends Specification {
             Double.MAX_VALUE | true
     }
 
+    def "test fromString invalid coordinates"() {
+        when: "fromString method is called"
+            Point.fromString(coordinates)
+        then: "a IllegalFormatException is thrown"
+            thrown(IllegalFormatException)
+        where:
+            coordinates     | _
+            ''              | _
+            'notapoint'     | _
+            '1.1'           | _
+            '1.1'           | _
+    }
+
+    def "test fromString valid coordinates"() {
+        when: "fromString method is called"
+            Point point = Point.fromString(coordinates)
+        then: "a Point instance is returned"
+            point
+        where:
+            coordinates     | _
+            '1,1'           | _
+            '0,0'           | _
+            '-1,-1'         | _
+            '1.1,1.1'       | _
+            '-1.1,-1.1'     | _
+    }
+
+    def "test toString without coordinates"() {
+        given: "a Point with no coordinates"
+            Point point = new Point()
+        when: "toString method is called"
+            String asString = point.toString()
+        then: "a 0,0 coordinate string is returned"
+            asString != null
+            asString == '0.0,0.0'
+    }
+
+    def "test toString with coordinates"() {
+        given: "a Point with coordinates"
+            Point point = new Point(latitude: 1.1, longitude: -1.1)
+        when: "toString method is called"
+            String asString = point.toString()
+        then: "an valid string is returned"
+            asString != null
+            asString == '1.1,-1.1'
+    }
+
 }
