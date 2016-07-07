@@ -1,13 +1,45 @@
+plugins {
+	id "net.saliman.cobertura" version "2.3.2"
+}
+
 group 'com.mathifonseca.intercom'
 version '1.0.0'
 
 apply plugin: 'groovy'
+apply plugin: 'codenarc'
 
 repositories {
     mavenCentral()
 }
 
+configurations {
+    gmetrics
+}
+
 dependencies {
     compile group: 'org.codehaus.groovy', name: 'groovy-all', version: '2.4.7'
     testCompile group: 'org.spockframework', name: 'spock-core', version: '1.0-groovy-2.4'
+    gmetrics group: 'org.gmetrics', name: 'GMetrics', version: '0.7'
+    testRuntime "org.slf4j:slf4j-api:1.7.10"
+}
+
+codenarc {
+	configFile = file('config/codenarc/rules.groovy')
+	reportFormat = 'html'
+	maxPriority1Violations 0
+    maxPriority2Violations 30
+    maxPriority3Violations 30
+}
+
+task gmetrics << {
+    ant.taskdef(name: 'gmetrics', classname: 'org.gmetrics.ant.GMetricsTask', classpath: configurations.gmetrics.asPath)
+    ant.mkdir(dir: "${project.reporting.baseDir.path}/gmetrics")
+    ant.gmetrics() {
+        report(type: 'org.gmetrics.report.BasicHtmlReportWriter') {
+            option(name: 'outputFile', value: "${project.reporting.baseDir.path}/gmetrics/gmetrics.html")
+        }
+        fileset(dir: 'src') {
+            include(name: '**/*.groovy')
+        }
+    }
 }
