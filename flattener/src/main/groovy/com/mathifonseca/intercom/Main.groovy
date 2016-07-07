@@ -6,11 +6,11 @@ class Main {
 
     static void main(args) {
 
-        def list = [[1,2,[3]],4]
+        List list = [[1, 2, [3]], 4]
 
-        def flattened = ListUtils.flatten(list)
+        List flattened = ListUtils.flatten(list)
 
-        assert flattened == [1,2,3,4]
+        assert flattened == [1, 2, 3, 4]
 
         println "$list -> $flattened"
 

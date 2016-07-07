@@ -92,7 +92,9 @@ ruleset {
     IfStatementCouldBeTernary 
     InvertedIfElse 
     LongLiteralWithLowerCaseL 
-    NoDef 
+    NoDef {
+        excludeRegex = /\"test .*/
+    }
     ParameterReassignment 
     TernaryCouldBeElvis 
     VectorIsObsolete 
@@ -172,7 +174,10 @@ ruleset {
     SpaceAfterSwitch 
     SpaceAfterWhile 
     SpaceAroundClosureArrow 
-    SpaceAroundMapEntryColon 
+    SpaceAroundMapEntryColon {
+        characterBeforeColonRegex = /\s/
+        characterAfterColonRegex = /\s/
+    }
     SpaceAroundOperator 
     SpaceBeforeClosingBrace 
     SpaceBeforeOpeningBrace 
@@ -238,7 +243,7 @@ ruleset {
     LoggingSwallowsStacktrace 
     MultipleLoggers 
     PrintStackTrace 
-    Println 
+//    Println
     SystemErrPrint 
     SystemOutPrint 
     
@@ -252,7 +257,9 @@ ruleset {
     FieldName 
     InterfaceName 
     InterfaceNameSameAsSuperInterface 
-    MethodName 
+    MethodName {
+        doNotApplyToClassNames = '*Test'
+    }
     ObjectOverrideMisspelledMethodName 
     PackageName 
     PackageNameMatchesFilePath 
@@ -309,7 +316,9 @@ ruleset {
     UnnecessaryElseStatement 
     UnnecessaryFinalOnPrivateMethod 
     UnnecessaryFloatInstantiation 
-    UnnecessaryGString 
+    UnnecessaryGString {
+        doNotApplyToClassNames = '*Test'
+    }
     UnnecessaryGetter 
     UnnecessaryIfStatement 
     UnnecessaryInstanceOfCheck 
@@ -324,7 +333,7 @@ ruleset {
     UnnecessaryPackageReference 
     UnnecessaryParenthesesForMethodCallWithClosure 
     UnnecessaryPublicModifier 
-    UnnecessaryReturnKeyword 
+//    UnnecessaryReturnKeyword
     UnnecessarySafeNavigationOperator 
     UnnecessarySelfAssignment 
     UnnecessarySemicolon 

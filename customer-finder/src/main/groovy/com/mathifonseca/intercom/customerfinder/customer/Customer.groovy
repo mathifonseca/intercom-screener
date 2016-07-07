@@ -8,7 +8,7 @@ class Customer {
     String name
     Point location
 
-    static Customer buildFromMap(Map json) {
+    static Customer fromMap(Map json) {
 
         if (!json || !json.user_id || !json.user_id.toString().isLong() ||
                 !json.name || json.latitude == null || json.longitude == null) {
@@ -16,16 +16,16 @@ class Customer {
         }
 
         Customer customer = new Customer(
-            id: json.user_id.toLong(),
-            name: json.name,
-            location: new Point(
-                latitude: json.latitude.toDouble(),
-                longitude: json.longitude.toDouble()
+            id : json.user_id.toLong(),
+            name : json.name,
+            location : new Point(
+                latitude : json.latitude.toDouble(),
+                longitude : json.longitude.toDouble()
             )
         )
 
         return customer
 
     }
-    
+
 }

@@ -35,7 +35,7 @@ class ConfigTest extends Specification {
         when: "loadConfig method is called"
             config.loadConfig(path)
         then: "a InvalidConfigException is thrown"
-            def ex = thrown(InvalidConfigException)
+            Exception ex = thrown(InvalidConfigException)
             ex.message == msg
         where:
             path                               | msg
@@ -60,7 +60,7 @@ class ConfigTest extends Specification {
         when: "loadCustomerFile method is called"
             config.loadCustomerFile(prop)
         then: "a InvalidConfigException is thrown"
-            def ex = thrown(InvalidConfigException)
+            Exception ex = thrown(InvalidConfigException)
             ex.message == msg
         where:
             prop                | msg
@@ -81,7 +81,7 @@ class ConfigTest extends Specification {
         when: "loadNearRadius method is called"
             config.loadNearRadius(prop)
         then: "a InvalidConfigException is thrown"
-            def ex = thrown(InvalidConfigException)
+            Exception ex = thrown(InvalidConfigException)
             ex.message == msg
         where:
             prop            | msg
@@ -110,7 +110,7 @@ class ConfigTest extends Specification {
         when: "loadNearLocation method is called"
             config.loadNearLocation(prop)
         then: "a InvalidConfigException is thrown"
-            def ex = thrown(InvalidConfigException)
+            Exception ex = thrown(InvalidConfigException)
             ex.message == msg
         where:
             prop            | msg

@@ -68,8 +68,8 @@ class PointTest extends Specification {
 
     def "test withinKms negative kms"() {
         given:
-            Point point1 = new Point(latitude: 1.1, longitude: -1.1)
-            Point point2 = new Point(latitude: 1.0, longitude: -1.0)
+            Point point1 = new Point(latitude : 1.1, longitude : -1.1)
+            Point point2 = new Point(latitude : 1.0, longitude : -1.0)
         when: "isWithinKms method is called"
             point1.isWithinKms(-1, point2)
         then: "an IllegalArgumentException is thrown"
@@ -81,8 +81,8 @@ class PointTest extends Specification {
             GeoUtils.metaClass.static.distance = { Point p1, Point p2 ->
                 return 50
             }
-            Point point1 = new Point(latitude: 1.1, longitude: -1.1)
-            Point point2 = new Point(latitude: 1.0, longitude: -1.0)
+            Point point1 = new Point(latitude : 1.1, longitude : -1.1)
+            Point point2 = new Point(latitude : 1.0, longitude : -1.0)
         when: "isWithinKms method is called"
             boolean result = point1.isWithinKms(within, point2)
         then: "a boolean is returned"
@@ -127,7 +127,7 @@ class PointTest extends Specification {
         given: "a Point with no coordinates"
             Point point = new Point()
         when: "toString method is called"
-            String asString = point.toString()
+            String asString = point
         then: "a 0,0 coordinate string is returned"
             asString != null
             asString == '0.0,0.0'
@@ -135,9 +135,9 @@ class PointTest extends Specification {
 
     def "test toString with coordinates"() {
         given: "a Point with coordinates"
-            Point point = new Point(latitude: 1.1, longitude: -1.1)
+            Point point = new Point(latitude : 1.1, longitude : -1.1)
         when: "toString method is called"
-            String asString = point.toString()
+            String asString = point
         then: "an valid string is returned"
             asString != null
             asString == '1.1,-1.1'

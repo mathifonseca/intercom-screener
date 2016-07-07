@@ -12,17 +12,17 @@ class CustomerLoader {
             throw new FileNotFoundException()
         }
 
-        def slurper = new JsonSlurper()
+        JsonSlurper slurper = new JsonSlurper()
 
         file.eachLine { line ->
-            def json
+            Map json
             try {
                 json = slurper.parseText(line)
             } catch (JsonException) {
-                //ignored
+                println 'Invalid JSON format, ignoring line: ' + line
             }
             if (json) {
-                def customer = Customer.buildFromMap(json)
+                Customer customer = Customer.fromMap(json)
                 CustomerRepository.persist(customer)
             }
         }

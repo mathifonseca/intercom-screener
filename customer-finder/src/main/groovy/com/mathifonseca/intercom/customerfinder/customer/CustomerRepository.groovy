@@ -4,11 +4,11 @@ import com.mathifonseca.intercom.customerfinder.geo.Point
 
 class CustomerRepository {
 
-    private Map<Long, Customer> customers = new HashMap<>()
+    private final Map<Long, Customer> customers = [:]
 
     private static CustomerRepository instance = null
 
-    private CustomerRepository() {}
+    private CustomerRepository() { }
 
     private static CustomerRepository getInstance() {
         if (instance == null) {

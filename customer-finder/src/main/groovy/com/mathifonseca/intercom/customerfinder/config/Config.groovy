@@ -18,13 +18,13 @@ class Config {
             throw new IllegalArgumentException()
         }
 
-        def configFile = this.class.getResource(configPath)
+        URL configFile = this.class.getResource(configPath)
 
         if (!configFile) {
             throw new IllegalArgumentException()
         }
 
-        def props = new Properties()
+        Properties props = new Properties()
 
         new File(configFile.path).withInputStream { props.load(it) }
 
@@ -44,7 +44,7 @@ class Config {
             throw new InvalidConfigException(CUSTOMERS_FILE)
         }
 
-        def fileUrl = this.class.getResource(prop)
+        URL fileUrl = this.class.getResource(prop)
 
         if (!fileUrl) {
             throw new InvalidConfigException(CUSTOMERS_FILE)
@@ -74,7 +74,7 @@ class Config {
             throw new InvalidConfigException(NEAR_LOCATION)
         }
 
-        def point
+        Point point
 
         try {
             point = Point.fromString(prop)

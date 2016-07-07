@@ -5,56 +5,56 @@ import spock.lang.Specification
 
 class CustomerTest extends Specification {
 
-    def "test buildFromMap empty map"() {
+    def "test fromMap empty map"() {
         given: "an empty map"
-            def map = [:]
-        when: "buildFromMap method is called"
-            Customer.buildFromMap(map)
+            Map map = [:]
+        when: "fromMap method is called"
+            Customer.fromMap(map)
         then: "an IllegalArgumentException is thrown"
             thrown(IllegalArgumentException)
     }
 
-    def "test buildFromMap missing user_id"() {
+    def "test fromMap missing user_id"() {
         given: "a map without user_id"
-            def map = [ name : 'Mathias Fonseca', latitude : 1.1, longitude : 1.1 ]
-        when: "buildFromMap method is called"
-            Customer.buildFromMap(map)
+            Map map = [ name : 'Mathias Fonseca', latitude : 1.1, longitude : 1.1 ]
+        when: "fromMap method is called"
+            Customer.fromMap(map)
         then: "an IllegalArgumentException is thrown"
             thrown(IllegalArgumentException)
     }
 
-    def "test buildFromMap missing name"() {
+    def "test fromMap missing name"() {
         given: "a map without user_id"
-            def map = [ user_id : 1, latitude : 1.1, longitude : 1.1 ]
-        when: "buildFromMap method is called"
-            Customer.buildFromMap(map)
+            Map map = [ user_id : 1, latitude : 1.1, longitude : 1.1 ]
+        when: "fromMap method is called"
+            Customer.fromMap(map)
         then: "an IllegalArgumentException is thrown"
             thrown(IllegalArgumentException)
     }
 
-    def "test buildFromMap missing latitude"() {
+    def "test fromMap missing latitude"() {
         given: "a map without latitude"
-            def map = [ user_id : 1, name : 'Mathias Fonseca', longitude : 1.1 ]
-        when: "buildFromMap method is called"
-            Customer.buildFromMap(map)
+            Map map = [ user_id : 1, name : 'Mathias Fonseca', longitude : 1.1 ]
+        when: "fromMap method is called"
+            Customer.fromMap(map)
         then: "an IllegalArgumentException is thrown"
             thrown(IllegalArgumentException)
     }
 
-    def "test buildFromMap missing longitude"() {
+    def "test fromMap missing longitude"() {
         given: "a map without longitude"
-            def map = [ user_id : 1, name : 'Mathias Fonseca', latitude : 1.1 ]
-        when: "buildFromMap method is called"
-            Customer.buildFromMap(map)
+            Map map = [ user_id : 1, name : 'Mathias Fonseca', latitude : 1.1 ]
+        when: "fromMap method is called"
+            Customer.fromMap(map)
         then: "an IllegalArgumentException is thrown"
             thrown(IllegalArgumentException)
     }
 
-    def "test buildFromMap"() {
+    def "test fromMap"() {
         given: "a valid map"
-            def map = [ user_id : 1, name : 'Mathias Fonseca', latitude : 1.1, longitude : 1.1 ]
-        when: "buildFromMap method is called"
-            Customer customer = Customer.buildFromMap(map)
+            Map map = [ user_id : 1, name : 'Mathias Fonseca', latitude : 1.1, longitude : 1.1 ]
+        when: "fromMap method is called"
+            Customer customer = Customer.fromMap(map)
         then: "a Customer instance is returned"
             customer
             customer.id == map.user_id

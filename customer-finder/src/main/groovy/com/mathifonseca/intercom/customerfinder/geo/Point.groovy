@@ -30,8 +30,8 @@ class Point {
         if (!(coordinates ==~ /-?\d+(\.\d+)?,-?\d+(\.\d+)?/)) {
             throw new IllegalFormatException()
         }
-        def parts = coordinates.split(',')
-        return new Point(latitude: parts[0].toDouble(), longitude: parts[1].toDouble())
+        String[] parts = coordinates.split(',')
+        return new Point(latitude : parts[0].toDouble(), longitude : parts[1].toDouble())
     }
 
     @Override
